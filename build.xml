@@ -1,0 +1,31 @@
+<project name="yaRC" default="dist" basedir=".">
+	<description>
+        yet another Rss Crawler
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" value="src"/>
+	<property name="lib" value="lib"/>
+	<property name="bin" value="bin"/>
+	<property name="dist" value="dist"/>
+	
+	<path id="project-jar">
+		<fileset dir="${lib}" includes="*.jar" />
+	</path>
+
+	<target name="compile">
+		<mkdir dir="${bin}"/>
+		<javac srcdir="${src}" destdir="${bin}" classpathref="project-jar"  includeantruntime="false"/>
+	</target>
+	
+	<target name="dist" description="generate the jar file" depends="compile">
+		<jar jarfile="${dist}/${lib}/yaRC.jar" basedir="${bin}"/>
+		<copy todir="${dist}/${lib}/">
+			<fileset dir="${lib}" includes="**/*.jar"/> 
+		</copy>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${bin}"/>
+		<delete dir="${dist}"/>
+	</target>
+</project>

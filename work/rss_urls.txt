@@ -1,0 +1,5 @@
+http://www.hani.co.kr/rss/
+http://notice.tistory.com/rss
+http://feeds.feedburner.com/bloter
+http://googlekoreablog.blogspot.com/feeds/posts/default?alt=rss
+http://googleresearch.blogspot.com/feeds/posts/default?alt=rss
