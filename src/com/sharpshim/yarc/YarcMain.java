@@ -58,7 +58,7 @@ public class YarcMain {
 			br.close();
 			urlQ.setEnd();
 
-			int threadCount = 5;
+			int threadCount = Integer.parseInt(config.get("THREAD_COUNT"));
 			Thread[] threads = new Thread[threadCount];
 
 			for (int i = 0; i < threadCount; i++) {
