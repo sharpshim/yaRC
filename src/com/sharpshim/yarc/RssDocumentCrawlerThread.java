@@ -85,7 +85,7 @@ public class RssDocumentCrawlerThread extends AbstractCrawlerThread {
 		}
 		// It might be occurred when the document files doesn't exist.
 		catch (FileNotFoundException e) {
-			logger.info(config.get("DOC_FILE") + " is not exist. It will be created automatically.");
+			logger.info(config.get("DOC_FILE") + " does not exist. It will be created automatically.");
 			
 		}
 		catch (IOException e) {
@@ -143,6 +143,7 @@ public class RssDocumentCrawlerThread extends AbstractCrawlerThread {
 				logger.info("Title is null or length=0\turl: " + url.toString());
 				continue;
 			}
+			title = title.replaceAll("[\\t\\n\\r]", " ");
 			Date pubDateTemp = item.getPubDate();
 			if (pubDateTemp == null) {
 				logger.info("PubDate is null\turl: " + url.toString());
