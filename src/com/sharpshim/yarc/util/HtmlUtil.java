@@ -32,6 +32,17 @@ public class HtmlUtil {
 		html = html.replaceAll("\\<.*?\\>","");
 		html = StringEscapeUtils.unescapeHtml4(html);
 		html = html.replaceAll("[\n]+", "\n");
+		html = clearString(html);
 		return html.trim();
+	}
+
+	private static String clearString(String str) {
+		StringBuffer sb = new StringBuffer();
+		for (final Character c: str.toCharArray()) {
+			if (c != null && c != '\uFEFF') {
+				sb.append(c);
+			}
+		}
+		return sb.toString();
 	}
 }
