@@ -23,11 +23,14 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 public class HtmlUtil {
 	private static Pattern scriptPattern = Pattern.compile("\\<script.*\\</script\\>", Pattern.DOTALL);
+	private static Pattern hiddenPattern = Pattern.compile("\\<div[^>]*hidden.*?\\</div>", Pattern.DOTALL|Pattern.CASE_INSENSITIVE);
 	
 	public static String stripHtml(String html){
 		if (html == null)
 			return "";
 		Matcher matcher = scriptPattern.matcher(html);
+		html = matcher.replaceAll("");
+		matcher = hiddenPattern.matcher(html);
 		html = matcher.replaceAll("");
 		html = html.replaceAll("\\<.*?\\>","");
 		html = StringEscapeUtils.unescapeHtml4(html);
@@ -44,5 +47,9 @@ public class HtmlUtil {
 			}
 		}
 		return sb.toString();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(HtmlUtil.stripHtml("abcdq<div align=asfas Hidden>asfda\\r\\nsfdasf</div>wasfdasf<div>xxxxxxx</div>"));
 	}
 }
